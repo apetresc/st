@@ -1,0 +1,14 @@
+#!/bin/bash
+
+PATCHFILE="$1"
+PATCHNAME="$(echo $(basename $PATCHFILE) | cut -d'-' -f2)"
+PATCHNAME="${PATCHNAME%.*}"
+
+OLDBRANCH=$(git branch --show-current)
+
+git branch -D patch-$PATCHNAME
+git checkout -b patch-$PATCHNAME
+git apply $PATCHFILE
+git add .
+git commit -am "Applying patch $PATCHFILE"
+git checkout $OLDBRANCH

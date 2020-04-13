@@ -1,0 +1,21 @@
+#!/bin/bash
+
+BASE_BRANCH=apetresc
+PATCHDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+git checkout ${BASE_BRANCH}
+git branch -D ${BASE_BRANCH}-staging
+git checkout -b ${BASE_BRANCH}-staging
+
+for patch in $PATCHDIR/enabled/*
+do
+  $PATCHDIR/create-patch-branch $patch
+done
+
+for patch in $PATCHDIR/enabled/*
+do
+  patchname="$(echo $(basename $patch) | cut -d'-' -f2)"
+  patchname="${patchname%.*}"
+  git merge --no-edit patch-$patchname || $SHELL
+done
+
