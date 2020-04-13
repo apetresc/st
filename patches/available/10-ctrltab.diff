@@ -1,0 +1,19 @@
+commit 2c46c16cc9311f36a531e4ab04165e7d1b8326b0
+Author: Adrian Petrescu <adrian@apetre.sc>
+Date:   Wed Nov 13 10:23:13 2019 -0500
+
+    Send control codes for ctrl-tab and ctrl-shift-tab
+
+diff --git a/config.def.h b/config.def.h
+index 22e9d21..a002afb 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -517,6 +517,8 @@ static Key key[] = {
+ 	{ XK_F33,           XK_NO_MOD,      "\033[20;5~",    0,    0},
+ 	{ XK_F34,           XK_NO_MOD,      "\033[21;5~",    0,    0},
+ 	{ XK_F35,           XK_NO_MOD,      "\033[23;5~",    0,    0},
++  { XK_Tab,           ControlMask,    "\033[27;5;9~",  0,    0},
++  { XK_ISO_Left_Tab,ControlMask|ShiftMask, "\033[27;6;9~",  0,    0},
+ };
+ 
+ /*
