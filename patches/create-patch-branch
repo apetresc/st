@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -ex
 
 PATCHFILE="$1"
 PATCHNAME="$(echo $(basename $PATCHFILE) | cut -d'-' -f2)"
