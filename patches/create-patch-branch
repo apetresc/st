@@ -6,7 +6,7 @@ PATCHNAME="${PATCHNAME%.*}"
 
 OLDBRANCH=$(git branch --show-current)
 
-git branch -D patch-$PATCHNAME
+git branch -D patch-$PATCHNAME || true
 git checkout -b patch-$PATCHNAME
 git apply $PATCHFILE
 git add .

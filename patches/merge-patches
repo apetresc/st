@@ -4,7 +4,7 @@ BASE_BRANCH=apetresc
 PATCHDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 git checkout ${BASE_BRANCH}
-git branch -D ${BASE_BRANCH}-staging
+git branch -D ${BASE_BRANCH}-staging || true
 git checkout -b ${BASE_BRANCH}-staging
 
 for patch in $PATCHDIR/enabled/*
